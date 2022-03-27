@@ -1,60 +1,66 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+	<v-app>
+		<v-system-bar status class="noselect" height="30" dark>
+			<v-icon>mdi-vpn</v-icon>
+			<span>Connected to MGN VPN</span>
+			<v-spacer></v-spacer>
+			<v-icon>mdi-wifi-strength-4</v-icon>
+			<v-icon>mdi-signal</v-icon>
+			<v-icon>mdi-battery</v-icon>
+			<span>{{ clock }}</span>
+		</v-system-bar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+		<v-main class="mgn_container">
+			<router-view></router-view>
+		</v-main>
+	</v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
+	data() {
+		return {
+			clock: new Date().toLocaleTimeString()
+		}
+	},
 
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
+	created() {
+		setInterval(() => {
+			this.clock = new Date().toLocaleTimeString();
+		}, 500);
+	},
 };
 </script>
+
+<style>
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none;
+            user-select: none;
+}
+
+::selection {
+	background-color: #263238;
+}
+
+.mgn_container {
+	background-image: url('/kali.jpg');
+	background-position: center;
+	background-size: cover;
+	background-blend-mode: soft-light;
+}
+
+.mgn_header {
+	background: rgba(0, 0, 0, .4);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(11.1px);
+}
+
+.mgn_form {
+	padding: 70px;
+}
+</style>

@@ -1,4 +1,4 @@
-# rearden
+# Rearden
 
 ## Project setup
 ```
