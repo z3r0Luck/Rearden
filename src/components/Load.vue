@@ -3,6 +3,7 @@
 		<v-row class="text-center rounded-xl" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
+					<span>Rearden H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>
@@ -14,7 +15,7 @@
 						<v-img src="hack.png" width="70"></v-img>
 					</v-col>
 
-					<h4 class="mb-5">Message here...</h4>
+					<h4 class="mb-5">{{ msg }}</h4>
 
 					<v-progress-linear
 						height="10"
@@ -31,13 +32,29 @@ export default {
 	data() {
 		return {
 			value: 10,
-			values: [5, 10, 15, 20, 25]
+			values: [5, 7, 10, 12, 20],
+			messages: ['Message here 1...', 'Message here 2...', 'Message here 3...'],
+			msg: ''
 		}
 	},
 
 	mounted() {
-		setInterval(() => {
-			this.value += this.values[Math.floor(Math.random() * this.values.length)];
+		let i = 0;
+		let intervalID = setInterval(() => {
+			if (i === this.messages.length) {
+				this.value = 100;
+				clearInterval(intervalID);
+			}
+			else {
+				if (this.value > 100 && i < this.messages.length) {
+					this.value = 0;
+					i++;
+				}
+
+				this.msg = this.messages[i];
+
+				this.value += this.values[Math.floor(Math.random() * this.values.length)];
+			}
 		}, 1000);
 	},
 }

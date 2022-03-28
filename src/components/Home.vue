@@ -3,6 +3,7 @@
 		<v-row class="text-center rounded-xl" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
+					<span>Rearden H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>
@@ -14,9 +15,13 @@
 							<v-img src="hack.png" width="70"></v-img>
 						</v-col>
 
-						<v-col cols="6" v-for="(code) in passcodes" :key="code">
+						<v-col cols="12">
+							<h4 class="mb-5">Enter the codes you have...</h4>
+						</v-col>
+
+						<v-col cols="6" v-for="(code, index) in passcodes" :key="code">
 							<v-text-field
-								label="Passcode"
+								:label="'code ' + index"
 								v-model.trim="passcode"
 								clearable
 								required

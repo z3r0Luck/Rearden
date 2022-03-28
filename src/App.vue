@@ -2,7 +2,10 @@
 	<v-app>
 		<v-system-bar status class="noselect" height="30" dark>
 			<v-icon>mdi-vpn</v-icon>
-			<span>Connected to MGN VPN</span>
+			<v-progress-circular v-if="vpnLoading" size="20" indeterminate color="primary"></v-progress-circular>
+			<span v-else>Connected to MGN VPN</span>
+			<v-spacer></v-spacer>
+			<span>{{ date }}</span>
 			<v-spacer></v-spacer>
 			<v-icon>mdi-wifi-strength-4</v-icon>
 			<v-icon>mdi-signal</v-icon>
@@ -20,14 +23,24 @@
 export default {
 	data() {
 		return {
-			clock: new Date().toLocaleTimeString()
+			date: new Date().toDateString(),
+			clock: new Date().toLocaleTimeString(),
+			vpnLoading: true
 		}
 	},
 
 	created() {
 		setInterval(() => {
-			this.clock = new Date().toLocaleTimeString();
+			let js_date = new Date();
+			this.clock = js_date.toLocaleTimeString();
+			this.date = js_date.toDateString();
 		}, 500);
+	},
+
+	mounted() {
+		setInterval(() => {
+			this.vpnLoading = false;
+		}, 1300);
 	},
 };
 </script>

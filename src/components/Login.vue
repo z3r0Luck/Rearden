@@ -3,6 +3,7 @@
 		<v-row class="text-center" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
+					<span>Rearden H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>
@@ -14,20 +15,25 @@
 						<v-img src="hack.png" width="70"></v-img>
 					</v-col>
 
+					<h4 class="mb-5">Login to H4ckT00L</h4>
+
 					<v-col cols="12">
-						<v-text-field 
-							label="Username" 
+						<v-text-field
+							solo
+							label="Username"
+							:disabled="submitted"
 							v-model.trim="$v.username.$model"
 							:error-messages="usernameErrors"
 							@input="$v.username.$touch()"
 							@blur="$v.username.$touch()"
-							clearable
 							required
 						></v-text-field>
 					</v-col>
 
 					<v-col cols="12">
 						<v-text-field
+							solo
+							:disabled="submitted"
 							v-model.trim="$v.password.$model"
 							:error-messages="passwordErrors"
 							@input="$v.password.$touch()"
@@ -55,6 +61,7 @@ export default {
 			username: '',
 			password: '',
 			loadingLoginBtn: false,
+			submitted: false,
 		}
 	},
 
@@ -89,12 +96,14 @@ export default {
 
 			if (!this.$v.$invalid) {
 				this.loadingLoginBtn = true;
+				this.submitted = true;
 
 				// Handle the inputs here...
 
 				setTimeout(() => {
 					this.$cookies.set('mgn_session', 'Z6MehYx7=$LW7NC6t24F');
 					this.$router.push('/home');
+					this.submitted = false;
 				}, 2000);
 			}
 		}
