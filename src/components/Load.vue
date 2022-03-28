@@ -3,7 +3,7 @@
 		<v-row class="text-center rounded-xl" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
-					<span>Rearden H4ckT00L</span>
+					<span>R34rd3n H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>
@@ -31,7 +31,7 @@
 export default {
 	data() {
 		return {
-			value: 10,
+			value: 0,
 			values: [5, 7, 10, 12, 20],
 			messages: ['Message here 1...', 'Message here 2...', 'Message here 3...'],
 			msg: ''
@@ -50,10 +50,10 @@ export default {
 					this.value = 0;
 					i++;
 				}
-
+				else {
+					this.value += this.values[Math.floor(Math.random() * this.values.length)];
+				}
 				this.msg = this.messages[i];
-
-				this.value += this.values[Math.floor(Math.random() * this.values.length)];
 			}
 		}, 1000);
 	},

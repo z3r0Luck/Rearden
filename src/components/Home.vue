@@ -3,7 +3,7 @@
 		<v-row class="text-center rounded-xl" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
-					<span>Rearden H4ckT00L</span>
+					<span>R34rd3n H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>

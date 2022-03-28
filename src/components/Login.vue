@@ -3,7 +3,7 @@
 		<v-row class="text-center" align="center" justify="center">
 			<v-col cols="5">
 				<v-system-bar class="rounded-t-xl" height="40" window dark>
-					<span>Rearden H4ckT00L</span>
+					<span>R34rd3n H4ckT00L</span>
 					<v-spacer></v-spacer>
 					<v-icon>mdi-minus</v-icon>
 					<v-icon>mdi-checkbox-blank-outline</v-icon>
@@ -15,9 +15,14 @@
 						<v-img src="hack.png" width="70"></v-img>
 					</v-col>
 
-					<h4 class="mb-5">Login to H4ckT00L</h4>
+					<v-col cols="12" v-if="loading">
+						<h2>Loading R34rd3n H4ckT00L</h2>
+						<v-progress-circular indeterminate color="primary"></v-progress-circular>
+					</v-col>
+					
+					<h4 class="mb-5" v-if="!loading">Login to H4ckT00L</h4>
 
-					<v-col cols="12">
+					<v-col cols="12" v-if="!loading">
 						<v-text-field
 							solo
 							label="Username"
@@ -30,7 +35,7 @@
 						></v-text-field>
 					</v-col>
 
-					<v-col cols="12">
+					<v-col cols="12" v-if="!loading">
 						<v-text-field
 							solo
 							:disabled="submitted"
@@ -43,7 +48,7 @@
 						></v-text-field>
 					</v-col>
 
-					<v-col cols="12">
+					<v-col cols="12" v-if="!loading">
 						<v-btn large type="submit" class="ma-2" color="primary" dark :loading="loadingLoginBtn" :disabled="loadingLoginBtn">Submit</v-btn>
 					</v-col>
 				</v-form>
@@ -60,6 +65,7 @@ export default {
 		return {
 			username: '',
 			password: '',
+			loading: true,
 			loadingLoginBtn: false,
 			submitted: false,
 		}
@@ -88,6 +94,12 @@ export default {
 			!this.$v.password.required && errors.push('Password is required.');
 			return errors;
 		}
+	},
+
+	mounted() {
+		setTimeout(() => {
+			this.loading = false;
+		}, 2600);
 	},
 
 	methods: {
