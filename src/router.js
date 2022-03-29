@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueCookies from 'vue-cookies';
+// import VueCookies from 'vue-cookies';
 // COMPONENTS
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
@@ -16,32 +16,20 @@ const router = new VueRouter({
 			path: '/',
 			name: 'Login',
 			component: Login,
-			meta: {
-				requiresAuth: false,
-				disallowAuthed: true
-			}
 		},
 		{
 			path: '/home',
 			name: 'Home',
 			component: Home,
-			meta: {
-				requiresAuth: true,
-				disallowAuthed: false
-			}
 		},
 		{
 			path: '/load',
 			name: 'Load',
 			component: Load,
-			meta: {
-				requiresAuth: true,
-				disallowAuthed: false
-			}
 		},
 	]
 });
-
+/* 
 router.beforeEach(function (to, from, next) {
 	const session = VueCookies.get('mgn_session');
 
@@ -61,6 +49,6 @@ router.beforeEach(function (to, from, next) {
 			next();
 		}
 	}
-});
+}); */
 
 export default router;

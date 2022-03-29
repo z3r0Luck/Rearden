@@ -19,8 +19,17 @@
 						<h2>Loading R34rd3n H4ckT00L</h2>
 						<v-progress-circular indeterminate color="primary"></v-progress-circular>
 					</v-col>
-					
-					<h4 class="mb-5" v-if="!loading">Login to H4ckT00L</h4>
+
+					<pre v-if="!loading" class="d-flex justify-center align-center">
+/$$$$$$$   /$$$$$$  /$$   /$$                 /$$  /$$$$$$            
+| $$__  $$ /$$__  $$| $$  | $$                | $$ /$$__  $$          
+| $$  \ $$|__/  \ $$| $$  | $$  /$$$$$$   /$$$$$$$|__/  \ $$ /$$$$$$$ 
+| $$$$$$$/   /$$$$$/| $$$$$$$$ /$$__  $$ /$$__  $$   /$$$$$/| $$__  $$
+| $$__  $$  |___  $$|_____  $$| $$  \__/| $$  | $$  |___  $$| $$  \ $$
+| $$  \ $$ /$$  \ $$      | $$| $$      | $$  | $$ /$$  \ $$| $$  | $$
+| $$  | $$|  $$$$$$/      | $$| $$      |  $$$$$$$|  $$$$$$/| $$  | $$
+|__/  |__/ \______/       |__/|__/       \_______/ \______/ |__/  |__/
+					</pre>
 
 					<v-col cols="12" v-if="!loading">
 						<v-text-field
@@ -48,6 +57,10 @@
 						></v-text-field>
 					</v-col>
 
+					<v-col cols="12" v-if="error !== ''">
+						<h4 class="red--text">{{ error }}</h4>
+					</v-col>
+
 					<v-col cols="12" v-if="!loading">
 						<v-btn large type="submit" class="ma-2" color="primary" dark :loading="loadingLoginBtn" :disabled="loadingLoginBtn">Submit</v-btn>
 					</v-col>
@@ -68,6 +81,11 @@ export default {
 			loading: true,
 			loadingLoginBtn: false,
 			submitted: false,
+			user: {
+				name: 'letsakis',
+				pass: 'ts1mp0uk1!'
+			},
+			error: ''
 		}
 	},
 
@@ -110,13 +128,17 @@ export default {
 				this.loadingLoginBtn = true;
 				this.submitted = true;
 
-				// Handle the inputs here...
-
 				setTimeout(() => {
-					this.$cookies.set('mgn_session', 'Z6MehYx7=$LW7NC6t24F');
-					this.$router.push('/home');
+					if (this.username === this.user.name && this.password === this.user.pass) {
+						// this.$cookies.set('mgn_session', 'Z6MehYx7=$LW7NC6t24F');
+						this.$router.push('/home');
+					}
+					else {
+						this.error = 'Username or password is wrong!'
+					}
 					this.submitted = false;
-				}, 2000);
+					this.loadingLoginBtn = false;
+				}, 1200);
 			}
 		}
 	},

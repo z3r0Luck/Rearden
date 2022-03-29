@@ -1,5 +1,5 @@
 <template>
-	<v-app>
+	<v-app v-if="isOpen">
 		<v-system-bar status class="noselect" height="30" dark>
 			<v-icon>mdi-vpn</v-icon>
 			<v-progress-circular v-if="vpnLoading" size="20" indeterminate color="primary"></v-progress-circular>
@@ -23,6 +23,7 @@
 export default {
 	data() {
 		return {
+			isOpen: true,
 			date: new Date().toDateString(),
 			clock: new Date().toLocaleTimeString(),
 			vpnLoading: true
